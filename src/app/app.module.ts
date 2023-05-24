@@ -8,16 +8,23 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { TodolistModule } from './todolist/todolist.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { todolistReducer } from './store/reducers/todolist.reducer';
+import { TodolistEffects } from './store/effects/todolist.effects';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ todolist: todolistReducer }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([
+      TodolistEffects
+    ]),
     TodolistModule
   ],
   providers: [],
