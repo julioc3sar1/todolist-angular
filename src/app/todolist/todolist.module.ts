@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { TodolistRoutingModule } from './todolist-routing.module';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodolistElementComponent } from './todolist-element/todolist-element.component';
+import { TaskSkeletonComponent } from './task-skeleton/task-skeleton.component';
 
 
 @NgModule({
   declarations: [
     TodoListComponent,
-    TodolistElementComponent
+    TodolistElementComponent,
+    TaskSkeletonComponent
   ],
   imports: [
     CommonModule,

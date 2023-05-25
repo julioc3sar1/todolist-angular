@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { TodolistService } from 'src/app/services/todolist.service';
 import { Store } from '@ngrx/store';
 import { TodoListActions } from 'src/app/store/actions/todolist.actions';
-import { selectTodolist } from 'src/app/store/selectors/todolist.selector';
+import { selectLoading, selectTodos } from 'src/app/store/selectors/todolist.selector';
+import { Observable } from 'rxjs';
+import { Task, TodoList } from 'src/app/models/todolist';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -10,18 +11,18 @@ import { selectTodolist } from 'src/app/store/selectors/todolist.selector';
 })
 export class TodoListComponent {
   constructor(
-    private todoListService: TodolistService,
     private store: Store
   ) {
 
   }
 
-  todolist$ = this.store.select(selectTodolist)
+  loading$!: Observable<boolean>
+  todos$!: Observable<Task[]>
 
   ngOnInit() {
-    // this.todoListService.getAllTodoList().subscribe(resp => {
-    //   console.log(resp)
-    // })
+    this.loading$ = this.store.select(selectLoading)
+    this.todos$ = this.store.select(selectTodos)
+
     this.store.dispatch(TodoListActions.loadAllTodolist())
   }
 }

@@ -3,6 +3,11 @@
     <p class="mb-4">This is a superduper cool ToDo List!</p>
 </div>
 
-<div *ngFor="let task of (todolist$ | async)">
-    <app-todolist-element [task]="task"></app-todolist-element>
-</div>
+<section *ngIf="loading$ | async; else todolist">
+    <app-task-skeleton *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"/>
+</section>
+<ng-template #todolist>
+    <div *ngFor="let task of (todos$ | async)">
+        <app-todolist-element [task]="task"></app-todolist-element>
+    </div>
+</ng-template>

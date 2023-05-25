@@ -1,10 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
 import { TodoListActions, TodolistApiActions } from "../actions/todolist.actions";
-import { Task } from "src/app/models/todolist";
+import { Task, TodoList } from "src/app/models/todolist";
 
-export const initialState: Task[] = []
+export const initialState: { loading: boolean, todolist: TodoList } = { loading: false, todolist: {} as TodoList }
 
 export const todolistReducer = createReducer(
     initialState,
-    on(TodolistApiActions.todolistLoadedSuccess, (_state, { todolist }) => todolist.todos)
+    on(TodoListActions.loadAllTodolist, (_state) => {
+        return { ..._state, loading: true }
+    }),
+    on(TodolistApiActions.todolistLoadedSuccess, (_state, { todolist }) => {
+        return { ..._state, todolist, loading: false }
+    })
 )
