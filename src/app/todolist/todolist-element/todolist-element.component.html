@@ -1,6 +1,21 @@
-<div class="bg-slate-50 rounded-xl mb-4 p-3 flex items-center">
-    <input type="checkbox" class="w-[20px] h-[20px] mr-2">
-    <div class="flex-1">
+<div 
+class="bg-slate-50 rounded-xl mb-4 p-3 flex items-center cursor-pointer" 
+[ngClass]="{'!bg-green-200':completed}"
+>
+    <input 
+    type="checkbox" 
+    class="w-[20px] h-[20px] mr-2 accent-green-500"
+    
+    [(ngModel)]="completed" 
+    (change)="changeTaskStatus()">
+    
+    <div 
+    class="flex-1 outline-none text-indigo-950" 
+    #taskDescription 
+    [ngClass]="{'!text-green-700':completed, 'bg-white p-2 rounded-md':editable}" 
+    (click)="editTask(taskDescription)" 
+    (keyup.enter)="updateTask(taskDescription, $event)"
+    >
         {{task.todo}}
     </div>
 </div>

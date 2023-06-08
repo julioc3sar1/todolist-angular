@@ -5,17 +5,22 @@ import { TodolistRoutingModule } from './todolist-routing.module';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodolistElementComponent } from './todolist-element/todolist-element.component';
 import { TaskSkeletonComponent } from './task-skeleton/task-skeleton.component';
+import { AddTaskComponent } from './add-task/add-task.component';
+
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     TodoListComponent,
     TodolistElementComponent,
-    TaskSkeletonComponent
+    TaskSkeletonComponent,
+    AddTaskComponent
   ],
   imports: [
     CommonModule,
-    TodolistRoutingModule
+    TodolistRoutingModule,
+    FormsModule
   ]
 })
 export class TodolistModule { }

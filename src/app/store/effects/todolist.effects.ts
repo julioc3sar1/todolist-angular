@@ -20,4 +20,12 @@ export class TodolistEffects {
             catchError(() => EMPTY)
         ))
     ))
+
+    $addTodolist = createEffect(() => this.actions$.pipe(
+        ofType('[Todolist] Add TodoList'),
+        exhaustMap(({ task }) => this.todolistService.addTask(task).pipe(
+            map(task => ({ type: '[Todolist API] Todolist Added Success', task })),
+            catchError(() => EMPTY)
+        ))
+    ))
 }

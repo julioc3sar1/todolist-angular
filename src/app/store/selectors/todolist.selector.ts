@@ -1,7 +1,8 @@
+import { state } from "@angular/animations";
 import { createSelector, createFeatureSelector } from "@ngrx/store";
-import { Task, TodoList } from "src/app/models/todolist";
+import { Task, TodoList, TodolistState } from "src/app/models/todolist";
 
-export const selectTodolistFeature = createFeatureSelector<{ loading: boolean, todolist: TodoList }>('todolist')
+export const selectTodolistFeature = createFeatureSelector<TodolistState>('todolist')
 
 export const selectLoading = createSelector(
     selectTodolistFeature,
@@ -11,4 +12,9 @@ export const selectLoading = createSelector(
 export const selectTodos = createSelector(
     selectTodolistFeature,
     (state) => state.todolist.todos
+)
+
+export const selectTaskDescriptionValue = createSelector(
+    selectTodolistFeature,
+    (state) => state.newTaskDescription
 )
