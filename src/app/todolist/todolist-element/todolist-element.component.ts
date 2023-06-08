@@ -10,6 +10,9 @@ export class TodolistElementComponent {
   completed: boolean = true
   editable: boolean = false
 
+  constructor() {
+
+  }
   changeTaskStatus() {
     console.log(this.completed)
   }
@@ -29,5 +32,9 @@ export class TodolistElementComponent {
 
     element.contentEditable = 'false'
     this.editable = false
+  }
+
+  ngOnInit() {
+    this.completed = this.task.completed
   }
 }
