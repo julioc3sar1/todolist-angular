@@ -1,6 +1,6 @@
 export interface TodolistState {
     loading: boolean,
-    newTaskDescription: String,
+    newTaskDescription: string,
     todolist: TodoList,
 }
 export interface Task {

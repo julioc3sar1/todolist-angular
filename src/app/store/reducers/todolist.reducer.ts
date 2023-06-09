@@ -4,7 +4,7 @@ import { Task, TodoList, TodolistState } from "src/app/models/todolist";
 
 export const initialState: TodolistState = {
     loading: false,
-    newTaskDescription: 'hola',
+    newTaskDescription: '',
     todolist: {} as TodoList
 }
 
@@ -15,6 +15,9 @@ export const todolistReducer = createReducer(
     }),
     on(TodolistApiActions.todolistLoadedSuccess, (_state, { todolist }) => {
         return { ..._state, todolist, loading: false }
+    }),
+    on(TodoListActions.updateNewTodo, (_state, { taskDescription }) => {
+        return { ..._state, newTaskDescription:taskDescription }
     }),
     on(TodolistApiActions.todolistAddedSuccess, (_state, { task }) => {
         return {

@@ -7,6 +7,7 @@ export const TodoListActions = createActionGroup({
     events: {
         'Load all Todolist': emptyProps(),
         'Add TodoList': props<{ task: Partial<Task> }>(),
+        'Update new todo': props<{ taskDescription:string }>(),
         'Update TodoList': props<{ task: Task }>(),
     }
 })

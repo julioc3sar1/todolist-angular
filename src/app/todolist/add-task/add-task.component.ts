@@ -9,7 +9,7 @@ import { selectTaskDescriptionValue } from 'src/app/store/selectors/todolist.sel
   styleUrls: ['./add-task.component.scss']
 })
 export class AddTaskComponent {
-  taskValue: String = ''
+  taskValue: string = ''
 
   constructor(
     private store: Store
@@ -17,10 +17,17 @@ export class AddTaskComponent {
 
   }
 
-  onAddTask(value: string) {
-    console.log(value)
+  updateTaskDescriptionState(){
+    this.store.dispatch(TodoListActions.updateNewTodo({taskDescription:this.taskValue}))
+  }
+
+  addNewTodo() {
+    const cleanValue = this.taskValue.trim()
+    
+    if(cleanValue.length === 0) return
+
     const task = {
-      todo: value,
+      todo: this.taskValue,
       completed: false,
       userId: 5
     }
