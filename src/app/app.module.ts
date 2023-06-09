@@ -10,11 +10,14 @@ import { TodolistModule } from './todolist/todolist.module';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { SharedModule } from './shared/shared.module';
+
 import { todolistReducer } from './store/reducers/todolist.reducer';
 import { TodolistEffects } from './store/effects/todolist.effects';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { TodolistEffects } from './store/effects/todolist.effects';
     EffectsModule.forRoot([
       TodolistEffects
     ]),
+    SharedModule,
     TodolistModule
   ],
   providers: [],
