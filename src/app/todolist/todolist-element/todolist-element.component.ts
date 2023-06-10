@@ -19,8 +19,8 @@ export class TodolistElementComponent {
 
   editTask(element: HTMLElement) {
     console.log(element)
-    element.contentEditable = 'true'
     this.editable = true
+    element.contentEditable = 'true'
   }
 
   updateTask(element: any, event: any) {

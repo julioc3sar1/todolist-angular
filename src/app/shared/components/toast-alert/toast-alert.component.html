@@ -1,1 +1,5 @@
-<p>toast-alert works!</p>
+<div class="flex gap-3 p-3 rounded max-w-[300px]" [ngClass]="toastTypes[toast.status]">
+    <p class="text-sm">{{toast.message}}</p>
+    <button class="" (click)="closeAlert()">Close</button>
+</div>
+    

@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { todolistReducer } from './store/reducers/todolist.reducer';
 import { TodolistEffects } from './store/effects/todolist.effects';
+import { alertsReducer } from './store/reducers/alerts.reducer';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,11 @@ import { TodolistEffects } from './store/effects/todolist.effects';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({ todolist: todolistReducer }, {}),
+    StoreModule.forRoot({
+      todolist: todolistReducer,
+      alerts: alertsReducer
+    }
+    ),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([
       TodolistEffects

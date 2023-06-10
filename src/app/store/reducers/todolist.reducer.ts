@@ -17,7 +17,7 @@ export const todolistReducer = createReducer(
         return { ..._state, todolist, loading: false }
     }),
     on(TodoListActions.updateNewTodo, (_state, { taskDescription }) => {
-        return { ..._state, newTaskDescription:taskDescription }
+        return { ..._state, newTaskDescription: taskDescription }
     }),
     on(TodolistApiActions.todolistAddedSuccess, (_state, { task }) => {
         return {

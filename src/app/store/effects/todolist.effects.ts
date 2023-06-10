@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { EMPTY } from "rxjs";
+import { EMPTY, of } from "rxjs";
 import { map, exhaustMap, catchError } from "rxjs/operators";
 import { TodolistService } from "src/app/services/todolist.service";
 
@@ -25,7 +25,7 @@ export class TodolistEffects {
         ofType('[Todolist] Add TodoList'),
         exhaustMap(({ task }) => this.todolistService.addTask(task).pipe(
             map(task => ({ type: '[Todolist API] Todolist Added Success', task })),
-            catchError(() => EMPTY)
+            catchError((error) => of({ type: '[Todolist API] Todolist Operation Failed', error }))
         ))
     ))
 }

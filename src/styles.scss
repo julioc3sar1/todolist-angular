@@ -10,4 +10,15 @@
         font-family: 'Poppins', sans-serif;
         @apply bg-indigo-950 text-white
     }
+
+}
+
+@layer components{
+    .toast{
+        @apply fixed bottom-4 right-4 opacity-0;
+        
+        &-visible{
+            @apply opacity-100 transition-opacity duration-300;
+        }
+    }
 }
