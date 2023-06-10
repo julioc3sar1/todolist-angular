@@ -36,7 +36,7 @@ export class ToastAlertComponent implements OnInit {
       this.toast.message = res.message
       this.toast.status = res.status === 400 ? 'error' : 'success'
 
-      setTimeout(() => this.store.dispatch(AlertActions.hideAlert()), 5000)
+      // setTimeout(() => this.store.dispatch(AlertActions.hideAlert()), 5000)
     })
   }
 }

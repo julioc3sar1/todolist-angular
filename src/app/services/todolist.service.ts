@@ -6,17 +6,22 @@ import { Task } from '../models/todolist';
   providedIn: 'root'
 })
 export class TodolistService {
+  url: string = 'https://dummyjson.com'
 
   constructor(
     private http: HttpClient
   ) { }
 
   public getAllTodoList() {
-    return this.http.get('https://dummyjson.com/todos')
+    return this.http.get(`${this.url}/todos`)
   }
 
   public addTask(task: Task) {
-    return this.http.post('https://dummyjson.com/todos/add', task)
+    return this.http.post(`${this.url}/todos/add`, task)
+  }
+
+  public deleteTodo(todoId: string) {
+    return this.http.delete(`${this.url}/todos/${todoId}`,)
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Task } from 'src/app/models/todolist';
+import { Store } from '@ngrx/store';
+import { TodoListActions } from 'src/app/store/actions/todolist.actions';
 @Component({
   selector: 'app-todolist-element',
   templateUrl: './todolist-element.component.html',
@@ -10,20 +12,22 @@ export class TodolistElementComponent {
   completed: boolean = true
   editable: boolean = false
 
-  constructor() {
+  constructor(
+    private store: Store
+  ) {
 
   }
   changeTaskStatus() {
     console.log(this.completed)
   }
 
-  editTask(element: HTMLElement) {
+  editTodo(element: HTMLElement) {
     console.log(element)
     this.editable = true
     element.contentEditable = 'true'
   }
 
-  updateTask(element: any, event: any) {
+  updateTodo(element: any, event: any) {
     console.log(event)
     event.preventDefault();
     // console.log('dale')
@@ -32,6 +36,11 @@ export class TodolistElementComponent {
 
     element.contentEditable = 'false'
     this.editable = false
+  }
+
+  deleteTodo() {
+    const todoId = this.task.id
+    this.store.dispatch(TodoListActions.deleteTodoList({ todoId }))
   }
 
   ngOnInit() {

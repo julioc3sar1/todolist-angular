@@ -28,4 +28,13 @@ export class TodolistEffects {
             catchError((error) => of({ type: '[Todolist API] Todolist Operation Failed', error }))
         ))
     ))
+
+    $deleteTodolist = createEffect(() => this.actions$.pipe(
+        ofType('[Todolist] Delete TodoList'),
+        exhaustMap(({ todoId }) => this.todolistService.deleteTodo(todoId).pipe(
+            map(task => ({ type: '[Todolist API] Todolist Deleted Success', task })),
+            catchError((error) => of({ type: '[Todolist API] Todolist Operation Failed', error }))
+        ))
+
+    ))
 }

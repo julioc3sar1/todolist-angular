@@ -30,5 +30,16 @@ export const todolistReducer = createReducer(
                 limit: 30
             }
         }
+    }),
+    on(TodolistApiActions.todolistDeletedSuccess, (_state, { task }) => {
+        return {
+            ..._state,
+            todolist: {
+                todos: _state.todolist.todos.filter(todo => todo.id != task.id),
+                total: _state.todolist.total - 1,
+                skip: 0,
+                limit: 30
+            }
+        }
     })
 )
