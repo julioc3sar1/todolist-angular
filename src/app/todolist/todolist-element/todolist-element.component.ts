@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener, ElementRef } from '@angular/core';
 import { Task } from 'src/app/models/todolist';
 import { Store } from '@ngrx/store';
 import { TodoListActions } from 'src/app/store/actions/todolist.actions';
+import { TodolistService } from 'src/app/services/todolist.service';
+import { Observable, Subject } from 'rxjs';
 @Component({
   selector: 'app-todolist-element',
   templateUrl: './todolist-element.component.html',
@@ -9,28 +11,32 @@ import { TodoListActions } from 'src/app/store/actions/todolist.actions';
 })
 export class TodolistElementComponent {
   @Input() task!: Task
+
   completed: boolean = true
   editable: boolean = false
+  todoSuscription$!: Subject<HTMLElement>
 
   constructor(
-    private store: Store
+    private store: Store,
+    private el: ElementRef,
+    private todolistService: TodolistService
   ) {
-
+    this.todoSuscription$ = this.todolistService.somethingClicked$
   }
+
   changeTaskStatus() {
     console.log(this.completed)
   }
 
   editTodo(element: HTMLElement) {
-    console.log(element)
+    this.todolistService.somethingClicked$.next(element)
     this.editable = true
     element.contentEditable = 'true'
+    element.focus()
   }
 
   updateTodo(element: any, event: any) {
-    console.log(event)
     event.preventDefault();
-    // console.log('dale')
     const text = element.innerText
     element.innerText = text.replace(/[\r\n]/gm, '')
 
@@ -44,6 +50,16 @@ export class TodolistElementComponent {
   }
 
   ngOnInit() {
+
+    this.todoSuscription$.subscribe(res => {
+      if (!this.el.nativeElement.contains(res)) this.editable = false
+      res.contentEditable = 'false'
+    })
+
     this.completed = this.task.completed
+  }
+
+  ngOnDestroy() {
+    // this.todoSuscription$.unsubscribe()
   }
 }

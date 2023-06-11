@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { TodoListActions } from 'src/app/store/actions/todolist.actions';
 import { selectLoading, selectTodos } from 'src/app/store/selectors/todolist.selector';
 import { Observable } from 'rxjs';
-import { Task, TodoList } from 'src/app/models/todolist';
+import { Task } from 'src/app/models/todolist';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -11,7 +11,7 @@ import { Task, TodoList } from 'src/app/models/todolist';
 })
 export class TodoListComponent {
   constructor(
-    private store: Store
+    private store: Store,
   ) {
 
   }
@@ -20,9 +20,11 @@ export class TodoListComponent {
   todos$!: Observable<Task[]>
 
   ngOnInit() {
+
     this.loading$ = this.store.select(selectLoading)
     this.todos$ = this.store.select(selectTodos)
 
     this.store.dispatch(TodoListActions.loadAllTodolist())
   }
+
 }

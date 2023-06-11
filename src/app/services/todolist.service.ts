@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Task } from '../models/todolist';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodolistService {
   url: string = 'https://dummyjson.com'
+  somethingClicked$ = new Subject<HTMLElement>()
 
   constructor(
     private http: HttpClient
