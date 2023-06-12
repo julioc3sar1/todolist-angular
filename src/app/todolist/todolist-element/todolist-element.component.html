@@ -15,7 +15,7 @@ class="bg-slate-100 rounded-xl mb-4 p-3 flex items-center cursor-pointer"
     #taskDescription 
     [ngClass]="{'!text-green-700':completed, 'bg-white p-2 rounded-md':editable}" 
     (click)="editTodo(taskDescription)" 
-    (keyup.enter)="updateTodo(taskDescription, $event)"
+    (keydown.enter)="updateTodo(taskDescription, $event)"
     >
         {{task.todo}}
     </div>
