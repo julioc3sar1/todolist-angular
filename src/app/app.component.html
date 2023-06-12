@@ -6,3 +6,19 @@
 
   <app-toast-alert class="toast" [ngClass]="{'toast-visible' : (alertIsVisible$ |async)}"></app-toast-alert>
 </main>
+
+<app-dialog-alert>
+  <div class="py-10 flex flex-col items-center">
+    <svg class="mb-3" width="50px" height="50px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 11.5v5M12 7.51l.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <p class="md:max-w-[75%] text-center mb-3">For your information, this app is only for demo reasons, we are using a <a href="https://dummyjson.com/docs/todos" class="text-indigo-950 font-semibold">dummy JSON API</a> to show how API request works, for this reason, deleting or creating a new ToDo will not add it into the server.</p>
+    <div class="flex items-center">
+      <input 
+      #checkbox
+      type="checkbox" 
+      class="w-[20px] h-[20px] mr-2" 
+      (change)="handleDialogTrigger(checkbox.checked)"
+      >
+      <strong>Don't show again</strong>
+    </div>
+  </div>
+</app-dialog-alert>
