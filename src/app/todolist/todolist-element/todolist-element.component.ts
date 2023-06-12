@@ -26,6 +26,7 @@ export class TodolistElementComponent {
 
   changeTaskStatus() {
     console.log(this.completed)
+    this.editable = false
   }
 
   editTodo(element: HTMLElement) {
