@@ -15,10 +15,12 @@ import { SharedModule } from './shared/shared.module';
 import { todolistReducer } from './store/reducers/todolist.reducer';
 import { TodolistEffects } from './store/effects/todolist.effects';
 import { alertsReducer } from './store/reducers/alerts.reducer';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
